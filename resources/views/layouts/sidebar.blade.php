@@ -6,5 +6,14 @@
                 <small class="mb-0">Create Contact</small>
             </button>
         </a>
+
+        <div class="mt-3">
+                <a href="{{route('contact.index')}}" class="text-decoration-none text-light w-100">
+                   <div class="w-100  d-flex px-3 py-2 justify-content-between align-items-center sidebar__menu">
+                       <i class="fa fa-list text-dark"></i>
+                       <h6 class="mb-0 text-dark">Contact Lists</h6>
+                   </div>
+                </a>
+        </div>
     </div>
 </div>

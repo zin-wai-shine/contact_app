@@ -23,4 +23,26 @@
     height: 150px;
     width: 150px;
     border-radius: 50%;
+    cursor: pointer;
 }
+.upload__photo__container{
+    height: 150px;
+    width: 150px;
+    border-radius: 50%;
+    transition: all 150ms ease-in;
+}
+.upload__photo__container:hover{
+    box-shadow: 0 1px 5px #a0aec0;
+}
+
+.sidebar__menu{
+    transition: all 150ms ease-in;
+    border-radius: 50px;
+}
+.sidebar__menu:hover{
+    box-shadow: 0 2px 5px #718096;
+}
+
+
+
+

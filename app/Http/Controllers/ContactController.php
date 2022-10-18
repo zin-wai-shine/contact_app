@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreContactRequest;
 use App\Http\Requests\UpdateContactRequest;
 use App\Models\Contact;
+use Illuminate\Database\Eloquent\Model;
 
 class ContactController extends Controller
 {
@@ -15,7 +16,8 @@ class ContactController extends Controller
      */
     public function index()
     {
-        //
+        $contacts = Contact::latest('id')->paginate(7);
+        return view('contact.index', compact('contacts'));
     }
 
     /**
@@ -36,7 +38,34 @@ class ContactController extends Controller
      */
     public function store(StoreContactRequest $request)
     {
-        //
+        $contact = new Contact();
+        $contact->first_name = $request->firstName;
+        $contact->last_name = $request->lastName;
+
+        if($request->hasFile('featuredImg')){
+            $newName = $request->file('featuredImg')->store("public/featuredImg");
+            $contact->featured_img = $newName;
+        }
+
+        if($request->company){
+            $contact->company = $request->company;
+        }
+        if($request->jobTitle){
+            $contact->job_title = $request->jobTitle;
+        }
+        if($request->email){
+            $contact->email = $request->email;
+        }
+        $contact->phone = $request->phone;
+        if($request->birthday){
+            $contact->birthday = $request->birthday;
+        }
+        if($request->note){
+            $contact->note = $request->note;
+        }
+
+        $contact->save();
+        return redirect()->route('contact.index')->with("status", "contact is created");
     }
 
     /**
@@ -58,7 +87,7 @@ class ContactController extends Controller
      */
     public function edit(Contact $contact)
     {
-        //
+        return view('contact.edit', compact('contact'));
     }
 
     /**
@@ -70,7 +99,33 @@ class ContactController extends Controller
      */
     public function update(UpdateContactRequest $request, Contact $contact)
     {
-        //
+        $contact->first_name = $request->firstName;
+        $contact->last_name = $request->lastName;
+
+        if($request->hasFile('featured_img')){
+            $newName = $request->file('featured_img')->store("public/featuredImg");
+            $contact->featured_img = $newName;
+        }
+
+        if($request->company){
+            $contact->company = $request->company;
+        }
+        if($request->jobTitle){
+            $contact->job_title = $request->jobTitle;
+        }
+        if($request->email){
+            $contact->email = $request->email;
+        }
+        $contact->phone = $request->phone;
+        if($request->birthday){
+            $contact->birthday = $request->birthday;
+        }
+        if($request->note){
+            $contact->note = $request->note;
+        }
+
+        $contact->update();
+        return redirect()->route('contact.index')->with("status", "contact is updated");
     }
 
     /**
@@ -81,6 +136,7 @@ class ContactController extends Controller
      */
     public function destroy(Contact $contact)
     {
-        //
+        $contact->delete();
+        return redirect()->route('contact.index')->with('status', 'contact is deleted');
     }
 }
