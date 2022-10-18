@@ -30,7 +30,7 @@ class StoreContactRequest extends FormRequest
             "Company" => "min:2|max:20",
             "jobTitle" => "max:25",
             /*"email" => "unique:contacts,email",*/
-            "phone" => "required|numeric",
+            "phone" => "required",
             "note" => "max:50"
         ];
     }

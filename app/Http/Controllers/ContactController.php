@@ -16,7 +16,7 @@ class ContactController extends Controller
      */
     public function index()
     {
-        $contacts = Contact::latest('id')->paginate(7);
+        $contacts = Contact::latest('id')->paginate(12)->withQueryString();
         return view('contact.index', compact('contacts'));
     }
 
@@ -76,7 +76,7 @@ class ContactController extends Controller
      */
     public function show(Contact $contact)
     {
-        //
+        return view('contact.show', compact('contact'));
     }
 
     /**

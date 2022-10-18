@@ -30,7 +30,7 @@ class UpdateContactRequest extends FormRequest
             "Company" => "min:2|max:20",
             "jobTitle" => "max:25",
            /* "email" => "unique:contacts,email,".$this->route('contact')->id,*/
-            "phone" => "required|numeric",
+            "phone" => "required",
             "note" => "max:50"
         ];
     }
