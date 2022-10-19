@@ -2,9 +2,16 @@
 
 @section('content')
     <div class="mtContact px-5">
-        <table class="table-light table table-hover">
+        <div class="d-flex gap-2 px-2 w-100 gap-5 align-items-center">
+            <input type="checkbox" class="selectAll checkBox__style"  id="multipleSelect">
+            <form action="{{route('multipleDelete')}}" id="multipleDelete" method="post">
+                @csrf
+                <button class="btn btn-secondary btn-sm" id="deleteBtn"><i class="fa fa-trash-can"></i></button>
+            </form>
+        </div>
+        <table class="table-light table table-hover table-borderless">
             <thead>
-                <tr>
+                <tr class="text-primary">
                     <th>Name</th>
                     <th>Email</th>
                     <th>Phone Number</th>
@@ -15,48 +22,44 @@
 
             <tbody>
                 @forelse($contacts as $contact)
-                        <tr class="align-middle text-start">
+                        <tr class="align-middle text-start hover__table">
                             <td>
-                                <a href="{{route('contact.show', $contact->id)}}" class="text-decoration-none text-dark">
-                                    <div class="d-flex align-items-center gap-3">
-                                        @if($contact->featured_img == null)
-                                            <img src="{{asset('profile/profile.png')}}" height="40" width="40" class="rounded-circle" alt="">
-                                        @else
-                                            <img src="{{asset(Storage::url($contact->featured_img))}}" height="40" width="40" class="rounded-circle" alt="">
-                                        @endif
+                                <div class="d-flex align-items-center gap-3">
+                                    <input class="checkBox__style" type="checkbox" value="{{$contact->id}}" name="contacts[]" form="multipleDelete" id="selectItem">
+                                    <div class="d-flex gap-2 align-items-center w-100" onclick="window.location='{{route('contact.show', $contact->id)}}'">
+                                        <div class="item__photo" style="background-image:url(
+                                        {{ $contact->featured_img == null ? asset('profile/profile.png') : asset(Storage::url($contact->featured_img)) }}
+                                            )">
+                                        </div>
                                         {{$contact->first_name}} {{$contact->last_name}}
                                     </div>
-                                </a>
+                                </div>
                             </td>
-                            <td>
-                                <a href="{{route('contact.show', $contact->id)}}" class="text-decoration-none text-dark">
+                            <td  onclick="window.location='{{route('contact.show', $contact->id)}}'">
                                     <div class="w-100">
                                         {{$contact->email}}
                                     </div>
-                                </a>
                             </td>
-                            <td>
-                                <a href="{{route('contact.show', $contact->id)}}" class="text-decoration-none text-dark">
+                            <td onclick="window.location='{{route('contact.show', $contact->id)}}'">
                                     <div class="w-100">
                                         {{$contact->phone}}
                                     </div>
-                                </a>
                             </td>
-                            <td>
-                                <a href="{{route('contact.show', $contact->id)}}" class="text-decoration-none text-dark">
+                            <td onclick="window.location='{{route('contact.show', $contact->id)}}'">
                                     <div class="w-100">
                                         {{$contact->job_title}}
                                     </div>
-                                </a>
                             </td>
                             <td>
                                 <div class="d-flex align-items-center gap-5">
-                                    <a href="{{route("contact.edit", $contact->id)}}">
+                                    <a href="{{route("contact.edit", $contact->id)}}" class="icons__hover toggle__hover">
                                         <i class="fa fa-edit text-dark"></i>
                                     </a>
                                     <div class="dropdown">
 
-                                        <i class="fa fa-ellipsis-vertical dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"></i>
+                                       <div class="icons__hover toggle__hover dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                           <i class=" fa fa-ellipsis-vertical "></i>
+                                       </div>
 
                                         <ul class="dropdown-menu">
                                             <li>
@@ -75,7 +78,6 @@
                     <tr>
                         <td colspan="5" class="text-center">There is no Contact</td>
                     </tr>
-
                     @endforelse
             </tbody>
         </table>
@@ -85,7 +87,7 @@
                 {{$contacts->onEachSide(1)->links()}}
             </div>
             <div>
-                <h6 class="mb-0 text-dark">contacts({{\App\Models\Contact::all()->count()}})</h6>
+                <h6 class="mb-0 text-dark">CONTACTS({{\App\Models\Contact::all()->count()}})</h6>
             </div>
         </div>
     </div>

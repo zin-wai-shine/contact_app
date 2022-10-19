@@ -19,3 +19,4 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/',[\App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::resource('contact', \App\Http\Controllers\ContactController::class);
+Route::post('contact/multipleDelete',[\App\Http\Controllers\ContactsDeleteController::class, 'multipleDelete'])->name("multipleDelete");

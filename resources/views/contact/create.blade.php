@@ -7,10 +7,11 @@
             <div class="w-100">
                 {{--Upload Photo--}}
                 <div class=" d-flex justify-content-between align-items-end">
-                    <div class="upload__photo__container" id="featuredImgContainer">
+                    <div class="upload__photo__container position-relative" id="featuredImgContainer">
+                        <i class="fa fa-camera-alt absolute__icons"></i>
                         <img src="{{asset('profile/profile.png')}}" class="upload__photo" alt="">
                         <input type="file" name="featuredImg" id="featuredImg" hidden>
-                        @error('featuredImg') <small class="text-danger">{{$message}}</small> @enderror
+                        @error('featuredImg') <small class="text-danger text-nowrap">{{$message}}</small> @enderror
                     </div>
                     <div>
                         <button class="btn btn-secondary opacity-50 px-3">save</button>
@@ -25,7 +26,6 @@
                         <div class="form-floating mb-3">
                             <input type="text" name="firstName" class="form-control @error('firstName') is-invalid @enderror" id="floatingInput" placeholder="First Name">
                             <label for="floatingInput">First Name</label>
-
                             @error('firstName') <small class="text-danger">{{$message}}</small> @enderror
                         </div>
                     </div>

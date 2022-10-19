@@ -7,8 +7,13 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Contact App</title>
     @vite(['resources/sass/app.scss', 'resources/css/app.css', 'resources/js/app.js'])
+    <style>
+        .dropdown-toggle::after{
+            content:none;
+        }
+    </style>
 </head>
-<body>
+<body class="bg-light">
 
     @include('layouts.nav')
     <div class="d-flex">

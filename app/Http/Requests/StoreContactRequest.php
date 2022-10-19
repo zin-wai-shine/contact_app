@@ -26,10 +26,10 @@ class StoreContactRequest extends FormRequest
         return [
             "firstName" => "required|min:2|max:10",
             "lastName" => "required|min:2|max:10",
-            /*"featuredImg" => "file|mimes:jpeg,png,jpg",*/
+            "featuredImg" => "file|mimes:jpeg,png,jpg",
             "Company" => "min:2|max:20",
             "jobTitle" => "max:25",
-            /*"email" => "unique:contacts,email",*/
+            "email" => "unique:contacts,email",
             "phone" => "required",
             "note" => "max:50"
         ];

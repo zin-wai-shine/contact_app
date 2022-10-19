@@ -17,6 +17,10 @@
     width: 200px;
     border-radius: 50px;
     box-shadow: 2px 2px 5px grey;
+    transition: all 150ms ease-in;
+}
+.create__btn:hover{
+    box-shadow: 5px 5px 10px grey;
 }
 
 .upload__photo{
@@ -29,7 +33,18 @@
     height: 150px;
     width: 150px;
     border-radius: 50%;
+    background-repeat: no-repeat;
+    background-size: cover;
     transition: all 150ms ease-in;
+    background-position: center;
+}
+.item__photo{
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
 }
 .upload__photo__container:hover{
     box-shadow: 0 1px 5px #a0aec0;
@@ -37,12 +52,44 @@
 
 .sidebar__menu{
     transition: all 150ms ease-in;
-    border-radius: 50px;
+    border-top-right-radius: 50px;
+    border-bottom-right-radius: 50px;
 }
 .sidebar__menu:hover{
     box-shadow: 0 2px 5px #718096;
 }
+.icons__hover{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    cursor:pointer;
+    transition: all 100ms ease-in;
+    z-index: 1;
+}
+.icons__hover:hover{
+    box-shadow: 0 2px 3px #718096;
+}
 
+.absolute__icons{
+    position: absolute;
+    font-size: 30px;
+    top:40%;
+    left: 40%;
+    margin: auto;
+    color: #4a5568;
+    cursor: pointer;
+}
 
+.hover__table{
+    cursor:pointer;
+    z-index: -1;
+}
 
-
+.checkBox__style{
+    height: 20px;
+    width: 20px;
+    cursor: pointer;
+}
