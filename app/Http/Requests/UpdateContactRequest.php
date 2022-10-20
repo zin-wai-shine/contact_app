@@ -29,7 +29,7 @@ class UpdateContactRequest extends FormRequest
             "featuredImg" => "file|mimes:jpeg,png,jpg",
             "Company" => "min:2|max:20",
             "jobTitle" => "max:25",
-            "email" => "unique:contacts,email,".$this->route('contact')->id,
+/*            "email" => "unique:contacts,email,".$this->route('contact')->id,*/
             "phone" => "required",
             "note" => "max:50"
         ];

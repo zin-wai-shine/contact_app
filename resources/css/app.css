@@ -87,7 +87,27 @@
     cursor:pointer;
     z-index: -1;
 }
+.hover__table .toggle__hover{
+    visibility: hidden !important;
+}
+.hover__table:hover .toggle__hover{
+    visibility: visible !important;
+}
+.hover__table .item__checkbox{
+    display: none ;
+}
+.hover__table:hover .item__checkbox{
+    display: block !important;
+}
+.hover__table:hover .item__photo{
+    display: none !important;
+}
 
+
+
+.item__show{
+    width: 50px;
+}
 .checkBox__style{
     height: 20px;
     width: 20px;

@@ -56,7 +56,7 @@
             <div class="">
                 <a href="{{route('contact.index')}}" class="text-decoration-none text-light w-100">
                     <div class="w-100  d-flex px-3 py-2 justify-content-between align-items-center sidebar__menu">
-                        <i class="text-secondary fa fa-box-t"></i>
+                        <i class="text-secondary fa fa-box-tissue"></i>
                         <small class="mb-0 text-dark text-nowrap">Import</small>
                     </div>
                 </a>

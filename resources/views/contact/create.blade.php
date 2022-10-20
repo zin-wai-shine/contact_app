@@ -7,11 +7,9 @@
             <div class="w-100">
                 {{--Upload Photo--}}
                 <div class=" d-flex justify-content-between align-items-end">
-                    <div class="upload__photo__container position-relative" id="featuredImgContainer">
+                    <div class="upload__photo__container position-relative " id="featuredImgContainer" style="background-image:url({{asset('profile/profile.png')}})">
                         <i class="fa fa-camera-alt absolute__icons"></i>
-                        <img src="{{asset('profile/profile.png')}}" class="upload__photo" alt="">
                         <input type="file" name="featuredImg" id="featuredImg" hidden>
-                        @error('featuredImg') <small class="text-danger text-nowrap">{{$message}}</small> @enderror
                     </div>
                     <div>
                         <button class="btn btn-secondary opacity-50 px-3">save</button>

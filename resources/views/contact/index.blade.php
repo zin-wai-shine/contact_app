@@ -24,14 +24,20 @@
                 @forelse($contacts as $contact)
                         <tr class="align-middle text-start hover__table">
                             <td>
-                                <div class="d-flex align-items-center gap-3">
-                                    <input class="checkBox__style" type="checkbox" value="{{$contact->id}}" name="contacts[]" form="multipleDelete" id="selectItem">
-                                    <div class="d-flex gap-2 align-items-center w-100" onclick="window.location='{{route('contact.show', $contact->id)}}'">
-                                        <div class="item__photo" style="background-image:url(
-                                        {{ $contact->featured_img == null ? asset('profile/profile.png') : asset(Storage::url($contact->featured_img)) }}
-                                            )">
+                                <div class="d-flex align-items-center">
+                                    <div class="d-flex gap-2 align-items-center w-100">
+                                        <div class="d-flex justify-content-center align-items-center item__show">
+                                            <input class="checkBox__style item__checkbox" type="checkbox" value="{{$contact->id}}" name="contacts[]" form="multipleDelete" id="selectItem">
+                                            <div class="item__photo" id="itemPhoto" style="background-image:url(
+                                            {{ $contact->featured_img == null ? asset('profile/profile.png') : asset(Storage::url($contact->featured_img)) }}
+                                                )">
+                                            </div>
                                         </div>
-                                        {{$contact->first_name}} {{$contact->last_name}}
+
+                                        <div class="w-100" onclick="window.location='{{route('contact.show', $contact->id)}}'">
+                                            {{$contact->first_name}} {{$contact->last_name}}
+                                        </div>
+
                                     </div>
                                 </div>
                             </td>
