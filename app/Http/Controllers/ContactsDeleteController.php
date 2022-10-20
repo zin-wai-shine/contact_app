@@ -9,6 +9,6 @@ class ContactsDeleteController extends Controller
 {
     public function multipleDelete(Request $request){
         Contact::destroy($request->contacts);
-        return redirect()->back();
+        return redirect()->route('contact.index')->with('status','contact are deleted');
     }
 }

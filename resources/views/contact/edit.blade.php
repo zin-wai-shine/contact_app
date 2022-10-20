@@ -9,11 +9,7 @@
                 {{--Upload Photo--}}
                 <div class=" d-flex justify-content-between align-items-end">
                     <div class="upload__photo__container" id="featuredImgContainer">
-                        <div class="upload__photo__container" style="background-image:url(
-                        {{ $contact->featured_img == null ? asset('profile/profile.png') : asset(Storage::url($contact->featured_img)) }}
-                            )">
-                        </div>
-
+                        <img src="{{ $contact->featured_img == null ? asset('profile/profile.png') : asset(Storage::url($contact->featured_img)) }}" id="editImage" class="upload__photo" alt="">
                         <input type="file" name="featured_img" id="featuredImg" hidden>
                         @error('featuredImg') <small class="text-danger">{{$message}}</small> @enderror
                     </div>

@@ -7,8 +7,9 @@
             <div class="w-100">
                 {{--Upload Photo--}}
                 <div class=" d-flex justify-content-between align-items-end">
-                    <div class="upload__photo__container position-relative " id="featuredImgContainer" style="background-image:url({{asset('profile/profile.png')}})">
+                    <div class="upload__photo__container position-relative " id="featuredImgContainer">
                         <i class="fa fa-camera-alt absolute__icons"></i>
+                        <img src="{{asset('profile/profile.png')}}" alt="" class="upload__photo" id="createImage">
                         <input type="file" name="featuredImg" id="featuredImg" hidden>
                     </div>
                     <div>

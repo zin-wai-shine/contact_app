@@ -82,6 +82,11 @@
     color: #4a5568;
     cursor: pointer;
 }
+.show__img__icons{
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+}
 
 .hover__table{
     cursor:pointer;
@@ -91,6 +96,13 @@
     visibility: hidden !important;
 }
 .hover__table:hover .toggle__hover{
+    visibility: visible !important;
+}
+
+.hover__table .check__icons{
+    visibility: hidden !important;
+}
+.hover__table:hover .check__icons{
     visibility: visible !important;
 }
 .hover__table .item__checkbox{
@@ -105,6 +117,7 @@
 
 
 
+
 .item__show{
     width: 50px;
 }
@@ -112,4 +125,13 @@
     height: 20px;
     width: 20px;
     cursor: pointer;
+}
+.swal2-actions{
+    gap: 20px;
+}
+.drop__hover{
+    transition: all 150ms ease-in;
+}
+.drop__hover:hover{
+    background-color: #cbd5e0;
 }

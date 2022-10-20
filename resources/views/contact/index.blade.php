@@ -2,12 +2,15 @@
 
 @section('content')
     <div class="mtContact px-5">
-        <div class="d-flex gap-2 px-2 w-100 gap-5 align-items-center">
-            <input type="checkbox" class="selectAll checkBox__style"  id="multipleSelect">
+        <div class="d-flex gap-1 px-4 w-100 gap-5 align-items-center">
+            <form class="d-flex align-items-center gap-2 mx-1">
+                <input type="checkbox" class="selectAll checkBox__style"  id="multipleSelect">
+                <label class="mb-0 h5" for="multipleSelect"> <i class="fa fa-list"></i></label>
+            </form>
             <form action="{{route('multipleDelete')}}" id="multipleDelete" method="post">
                 @csrf
-                <button class="btn btn-secondary btn-sm" id="deleteBtn"><i class="fa fa-trash-can"></i></button>
             </form>
+            <div id="deleteBtn"><i class="fa fa-trash-can h5 icons__hover"></i></div>
         </div>
         <table class="table-light table table-hover table-borderless">
             <thead>
@@ -24,21 +27,32 @@
                 @forelse($contacts as $contact)
                         <tr class="align-middle text-start hover__table">
                             <td>
-                                <div class="d-flex align-items-center">
-                                    <div class="d-flex gap-2 align-items-center w-100">
-                                        <div class="d-flex justify-content-center align-items-center item__show">
-                                            <input class="checkBox__style item__checkbox" type="checkbox" value="{{$contact->id}}" name="contacts[]" form="multipleDelete" id="selectItem">
-                                            <div class="item__photo" id="itemPhoto" style="background-image:url(
-                                            {{ $contact->featured_img == null ? asset('profile/profile.png') : asset(Storage::url($contact->featured_img)) }}
-                                                )">
+                                <div class="d-flex align-items-center w-100">
+                                    <form class="d-flex gap-3 align-items-center w-100 justify-content-between">
+                                            <div class="d-flex justify-content-center align-items-center item__show">
+                                               <div class="d-flex align-items-center gap-2">
+                                                   <i class="fa fa-grip-vertical text-secondary check__icons"></i>
+                                                   <input
+                                                       class="checkBox__style item__checkbox selectItem"
+                                                       onchange="checkStatus(this)"
+                                                       type="checkbox"
+                                                       value="{{$contact->id}}"
+                                                       name="contacts[]"
+                                                       form="multipleDelete" id="selectItem{{$contact->id}}"
+                                                   />
+                                               </div>
+                                                <div class="item__photo " id="itemPhoto" style="background-image:url(
+                                                {{ $contact->featured_img == null ? asset('profile/profile.png') : asset(Storage::url($contact->featured_img)) }}
+                                                    )">
+                                                    <input type="text" value="{{$contact->id}}" hidden>
+                                                </div>
                                             </div>
-                                        </div>
 
-                                        <div class="w-100" onclick="window.location='{{route('contact.show', $contact->id)}}'">
-                                            {{$contact->first_name}} {{$contact->last_name}}
-                                        </div>
+                                            <label class="w-100" for="selectItem{{$contact->id}}">
+                                                {{$contact->first_name}} {{$contact->last_name}}
+                                            </label>
 
-                                    </div>
+                                    </form>
                                 </div>
                             </td>
                             <td  onclick="window.location='{{route('contact.show', $contact->id)}}'">
@@ -67,14 +81,40 @@
                                            <i class=" fa fa-ellipsis-vertical "></i>
                                        </div>
 
-                                        <ul class="dropdown-menu">
-                                            <li>
-                                                <form id="delete" action="{{route('contact.destroy', $contact->id)}}" method="post">
+                                        <ul class="dropdown-menu py-2">
+
+                                            <li class="drop__hover px-2 py-1">
+                                                <div class="d-flex gap-5 align-items-center text-secondary">
+                                                    <i class="fa fa-print"></i>
+                                                    <div>print</div>
+                                                </div>
+                                            </li>
+
+                                            <li class="drop__hover px-2 py-1">
+                                                <div class="d-flex gap-5 align-items-center text-secondary">
+                                                    <i class="fa fa-cloud-arrow-down"></i>
+                                                    <div>Export</div>
+                                                </div>
+                                            </li>
+
+                                            <li class="drop__hover px-2 py-1">
+                                                <div class="d-flex gap-5 align-items-center text-secondary">
+                                                    <i class="fa fa-box-archive"></i>
+                                                    <div class="text-nowrap">hide from contants</div>
+                                                </div>
+                                            </li>
+
+                                            <li class="drop__hover px-2 py-1">
+                                                <form id="deleteItemForm" action="{{route('contact.destroy', $contact->id)}}" method="post">
                                                     @csrf
                                                     @method('delete')
-                                                    <button class="btn btn-sm w-100 border-0">delete</button>
                                                 </form>
+                                                <div class="d-flex gap-5 align-items-center text-secondary" id="deleteItem">
+                                                    <i class="fa fa-trash-can"></i>
+                                                    <div>delete</div>
+                                                </div>
                                             </li>
+
                                         </ul>
                                     </div>
                                 </div>

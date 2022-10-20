@@ -23,5 +23,14 @@
         </div>
     </div>
 
+    <script>
+
+        @if(session('status'))
+
+            @endif
+
+    </script>
+
 </body>
 </html>
+
