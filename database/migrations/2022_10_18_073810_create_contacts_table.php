@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('phone');
             $table->string('birthday')->nullable();
             $table->text('note')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

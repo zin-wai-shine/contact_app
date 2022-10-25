@@ -4,23 +4,59 @@
     box-sizing: border-box;
 }
 
+/*Scroll Behaviours*/
+
+::-webkit-scrollbar {
+    width: 7px;
+    height: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #E5E6E7;
+    border-radius: 10px;
+    height: 80px;
+}
+
+::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+/*End Behaviours*/
+
+/*Search Input*/
+.search__container{
+    background-color: #F1F3F4;
+    padding: 5px 20px;
+    width: 550px;
+}
+.search__input{
+    outline: none;
+    height: 40px;
+    background-color: #F1F3F4;
+    width: 100%;
+}
+/*End Search Input*/
+
 .sidebar__container{
     width: 250px;
     height: 100vh;
 }
+.sidebar__item__container{
+    cursor:pointer;
+}
+
 .mtContact{
-    margin-top: 80px;
+    margin-top: 60px;
 }
 
 .create__btn{
     height: 50px;
     width: 200px;
     border-radius: 50px;
-    box-shadow: 2px 2px 5px grey;
+    box-shadow: 2px 2px 5px #F1F3F4;
     transition: all 150ms ease-in;
 }
 .create__btn:hover{
-    box-shadow: 5px 5px 10px grey;
+    box-shadow: 5px 5px 5px #718096;
 }
 
 .upload__photo{
@@ -45,6 +81,7 @@
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
+    overflow: hidden;
 }
 .upload__photo__container:hover{
     box-shadow: 0 1px 5px #a0aec0;
@@ -67,7 +104,6 @@
     border-radius: 50%;
     cursor:pointer;
     transition: all 100ms ease-in;
-    z-index: 1;
 }
 .icons__hover:hover{
     box-shadow: 0 2px 3px #718096;
@@ -116,7 +152,22 @@
 }
 
 
-
+/*Table Status */
+.table__scroll{
+    overflow-x: auto;
+    height:830px;
+}
+.table__scroll thead tr{
+    border-collapse: collapse;
+    position: sticky;
+    width: 100%;
+    top: 0;
+    z-index: 1;
+}
+.table__scroll tbody td {
+    z-index: -1;
+}
+/*End Table Status */
 
 .item__show{
     width: 50px;
@@ -135,3 +186,4 @@
 .drop__hover:hover{
     background-color: #cbd5e0;
 }
+

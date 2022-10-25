@@ -9,12 +9,29 @@ let multipleSelect = document.getElementById('multipleSelect');
 let selectItem = document.querySelectorAll('.selectItem');
 let itemPhoto = document.querySelectorAll('#itemPhoto');
 
+let selectDeleteContainer = document.getElementById('selectDeleteContainer');
 let deleteBtn = document.getElementById('deleteBtn');
 let multipleDeleteForm = document.getElementById('multipleDelete');
+let selectHead = document.getElementById('selectHead');
+let normalHead = document.getElementById('normalHead');
+let noneSelect = document.getElementById('noneSelect');
 
 let deleteItem = document.querySelectorAll('#deleteItem');
 let deleteItemForm = document.getElementById("deleteItemForm");
-let createImage = document.getElementById('createImage')
+let createImage = document.getElementById('createImage');
+
+let csvInput = document.getElementById('csvInput');
+let getCsvBtn = document.getElementById('getCsvFile');
+let csvName = document.getElementById('csvName');
+
+getCsvBtn.addEventListener('click', ()=>{
+    csvInput.click();
+    csvInput.addEventListener('change', (e) => {
+        csvName.innerText = e.target.value;
+    })
+})
+
+
 
 if(featuredImgContainer){
     featuredImgContainer.addEventListener('click', ()=>{
@@ -37,8 +54,8 @@ if(featuredImg){
     })
 }
 
-
-deleteBtn.classList.add("invisible");
+selectDeleteContainer.classList.add("invisible");
+selectHead.classList.add("invisible");
 
 // Hide & Show Delete Btn . . . .
 let selectedStatus = () => {
@@ -53,8 +70,20 @@ let selectedStatus = () => {
     })
 
     if(selectItem.length === counts.false){
-        deleteBtn.classList.remove("visible");
-        deleteBtn.classList.add("invisible");
+        selectDeleteContainer.classList.remove("visible");
+        selectDeleteContainer.classList.add("invisible");
+
+/*        selectHead.classList.remove("d-block");
+        selectHead.classList.add("d-none");
+
+        normalHead.classList.remove("d-none");
+        normalHead.classList.add("d-block");*/
+
+        selectHead.classList.remove("visible");
+        selectHead.classList.add("invisible");
+
+        normalHead.classList.remove("invisible");
+        normalHead.classList.add("visible");
     }
 
     // All Select Status. . . .
@@ -67,6 +96,22 @@ let selectedStatus = () => {
 
 
 }
+
+// None Select
+noneSelect.addEventListener('click', () => {
+    selectItem.forEach(e => {
+       e.checked = false;
+    });
+
+    selectDeleteContainer.classList.remove("visible");
+    selectDeleteContainer.classList.add("invisible");
+
+    selectHead.classList.remove("visible");
+    selectHead.classList.add("invisible");
+
+    normalHead.classList.remove("invisible");
+    normalHead.classList.add("visible");
+});
 
 //Multiple Select , Hide & Show Btn
 if(multipleSelect){
@@ -81,8 +126,20 @@ if(multipleSelect){
                 })
                 e.classList.remove('d-none')
                 e.classList.add('d-block')
-                deleteBtn.classList.remove("invisible");
-                deleteBtn.classList.add("visible");
+                selectDeleteContainer.classList.remove("invisible");
+                selectDeleteContainer.classList.add("visible");
+
+/*                selectHead.classList.remove("d-none");
+                selectHead.classList.add("d-block");
+
+                normalHead.classList.remove("d-block");
+                normalHead.classList.add("d-none");*/
+
+                selectHead.classList.remove("invisible");
+                selectHead.classList.add("visible");
+
+                normalHead.classList.remove("visible");
+                normalHead.classList.add("invisible");
             })
         }else{
             selectItem.forEach((e) => {
@@ -93,8 +150,20 @@ if(multipleSelect){
                 });
                 e.classList.remove('d-block')
                 e.classList.add('d-none')
-                deleteBtn.classList.remove("visible");
-                deleteBtn.classList.add("invisible");
+                selectDeleteContainer.classList.remove("visible");
+                selectDeleteContainer.classList.add("invisible");
+
+/*                selectHead.classList.remove("d-block");
+                selectHead.classList.add("d-none");
+
+                normalHead.classList.remove("d-none");
+                normalHead.classList.add("d-block");*/
+
+                selectHead.classList.remove("visible");
+                selectHead.classList.add("invisible");
+
+                normalHead.classList.remove("invisible");
+                normalHead.classList.add("visible");
             })
         }
 
@@ -170,8 +239,20 @@ window.checkStatus = (status) => {
                 e.classList.add('d-block');
             }
             if(e.checked === true){
-                deleteBtn.classList.remove("invisible");
-                deleteBtn.classList.add('visible');
+                selectDeleteContainer.classList.remove("invisible");
+                selectDeleteContainer.classList.add('visible');
+
+/*                selectHead.classList.remove("d-none");
+                selectHead.classList.add("d-block");
+
+                normalHead.classList.remove("d-block");
+                normalHead.classList.add("d-none");*/
+
+                selectHead.classList.remove("invisible");
+                selectHead.classList.add("visible");
+
+                normalHead.classList.remove("visible");
+                normalHead.classList.add("invisible");
             }
         })
         selectedStatus();

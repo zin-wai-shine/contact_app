@@ -16,8 +16,9 @@ class ContactController extends Controller
      */
     public function index()
     {
-        $contacts = Contact::latest('id')->paginate(12)->withQueryString();
-        return view('contact.index', compact('contacts'));
+        $contacts = Contact::search()->latest('id')->get();
+        $colors = ['#c94cbe', '#016612', '#ffa010',' #660077', '#d72323', '#1e2a78', '#ea7dc7'];
+        return view('contact.index', compact('contacts', 'colors'));
     }
 
     /**
