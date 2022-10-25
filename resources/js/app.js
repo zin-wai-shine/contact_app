@@ -1,5 +1,5 @@
 import './bootstrap';
-import Swal from "sweetalert2";
+
 
 let featuredImgContainer = document.getElementById('featuredImgContainer');
 let featuredImg = document.getElementById('featuredImg');
