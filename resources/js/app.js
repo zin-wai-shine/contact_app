@@ -1,5 +1,5 @@
 import './bootstrap';
-
+import Swal from 'sweetalert2'
 
 let featuredImgContainer = document.getElementById('featuredImgContainer');
 let featuredImg = document.getElementById('featuredImg');
@@ -11,6 +11,8 @@ let itemPhoto = document.querySelectorAll('#itemPhoto');
 
 let selectDeleteContainer = document.getElementById('selectDeleteContainer');
 let deleteBtn = document.getElementById('deleteBtn');
+let copyBtn = document.getElementById('copyBtn');
+let multipleForm = document.getElementById('multipleForm');
 let multipleDeleteForm = document.getElementById('multipleDelete');
 let selectHead = document.getElementById('selectHead');
 let normalHead = document.getElementById('normalHead');
@@ -24,14 +26,18 @@ let csvInput = document.getElementById('csvInput');
 let getCsvBtn = document.getElementById('getCsvFile');
 let csvName = document.getElementById('csvName');
 
+let menuToggle = document.getElementById('menuToggle');
+let sidebar = document.getElementById('sidebar');
+
+menuToggle.addEventListener('click', () => {
+    sidebar.classList.toggle('d-none');
+});
 getCsvBtn.addEventListener('click', ()=>{
     csvInput.click();
     csvInput.addEventListener('change', (e) => {
         csvName.innerText = e.target.value;
     })
 })
-
-
 
 if(featuredImgContainer){
     featuredImgContainer.addEventListener('click', ()=>{
@@ -98,19 +104,27 @@ let selectedStatus = () => {
 }
 
 // None Select
+let checkFalse = () => {
+    selectItem.forEach((e) => {
+        e.checked=false;
+        itemPhoto.forEach(i => {
+            i.classList.remove('d-none');
+            i.classList.add('d-block');
+        });
+        e.classList.remove('d-block')
+        e.classList.add('d-none')
+        selectDeleteContainer.classList.remove("visible");
+        selectDeleteContainer.classList.add("invisible");
+
+        selectHead.classList.remove("visible");
+        selectHead.classList.add("invisible");
+
+        normalHead.classList.remove("invisible");
+        normalHead.classList.add("visible");
+    })
+}
 noneSelect.addEventListener('click', () => {
-    selectItem.forEach(e => {
-       e.checked = false;
-    });
-
-    selectDeleteContainer.classList.remove("visible");
-    selectDeleteContainer.classList.add("invisible");
-
-    selectHead.classList.remove("visible");
-    selectHead.classList.add("invisible");
-
-    normalHead.classList.remove("invisible");
-    normalHead.classList.add("visible");
+    checkFalse();
 });
 
 //Multiple Select , Hide & Show Btn
@@ -142,29 +156,7 @@ if(multipleSelect){
                 normalHead.classList.add("invisible");
             })
         }else{
-            selectItem.forEach((e) => {
-                e.checked=false;
-                itemPhoto.forEach(i => {
-                    i.classList.remove('d-none');
-                    i.classList.add('d-block');
-                });
-                e.classList.remove('d-block')
-                e.classList.add('d-none')
-                selectDeleteContainer.classList.remove("visible");
-                selectDeleteContainer.classList.add("invisible");
-
-/*                selectHead.classList.remove("d-block");
-                selectHead.classList.add("d-none");
-
-                normalHead.classList.remove("d-none");
-                normalHead.classList.add("d-block");*/
-
-                selectHead.classList.remove("visible");
-                selectHead.classList.add("invisible");
-
-                normalHead.classList.remove("invisible");
-                normalHead.classList.add("visible");
-            })
+           checkFalse();
         }
 
     })
@@ -282,7 +274,8 @@ deleteItem.forEach(e => {
 });
 
 // Confirmation Delete....
-deleteBtn.addEventListener('click', () => {
+
+let showAlert = (btn) => {
     const swalWithBootstrapButtons = Swal.mixin({
         customClass: {
             confirmButton: 'btn btn-danger',
@@ -296,18 +289,32 @@ deleteBtn.addEventListener('click', () => {
         text: "You want to delete these files ?",
         icon: 'warning',
         showCancelButton: true,
-        confirmButtonText: 'Delete',
+        confirmButtonText: btn,
         cancelButtonText: 'Cancel',
         reverseButtons: true
     }).then((result) => {
         if(result.isConfirmed){
-            multipleDeleteForm.submit();
+            multipleForm.submit();
             window.showToast = function (message){
                 alert(message)
             }
         }
     })
+};
+deleteBtn.addEventListener('click', () => {
+    multipleForm.setAttribute('action', 'http://127.0.0.1:8000/contact/multipleDelete') ;
+    showAlert("Delete");
+})
+copyBtn.addEventListener('click', () => {
+  multipleForm.setAttribute('action', "http://127.0.0.1:8000/contact/multipleCopy")
+    showAlert("Copy");
+});
 
+let trashBtn = document.getElementById('trashBtn');
+let trashForm = document.getElementById('trashForm');
+trashBtn.addEventListener('click', () => {
+    alert('hello');
+    trashForm.submit();
 })
 
 

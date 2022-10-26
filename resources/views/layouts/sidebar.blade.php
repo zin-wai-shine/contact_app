@@ -1,4 +1,4 @@
-<div class="sidebar__container">
+<div class="sidebar__container" id="sidebar">
     <div class="mtContact p-1">
         <a href="{{route('contact.create')}}" class="text-decoration-none">
             <button class="create__btn d-flex bg-secondary bg-opacity-10 justify-content-center gap-3 align-items-center px-3 border-0 mt-4">

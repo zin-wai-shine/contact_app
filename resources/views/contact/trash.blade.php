@@ -27,10 +27,10 @@
                                 <ul class="dropdown-menu py-2 px-1">
 
                                     <li class="drop__hover rounded-2 px-2 py-1" style="cursor:pointer">
-                                        <form action="{{route('contact.restores')}}" id="multipleDelete" method="post">
+                                        <form action="{{route('contact.restores')}}" id="multipleForm" method="post">
                                             @csrf
                                         </form>
-                                        <div id="deleteBtn" class="d-flex gap-5 align-items-center text-success">
+                                        <div id="trashBtn" class="d-flex gap-5 align-items-center text-success">
                                             <i class="fa fa-trash-restore text-success"></i>
                                             <div>recovers</div>
                                         </div>
@@ -44,10 +44,10 @@
                                     </li>
 
                                     <li class="drop__hover rounded-2 px-2 py-1" style="cursor:pointer">
-                                        <form action="{{route('contact.force-deletes')}}" id="multipleDelete" method="post">
+                                        <form action="{{route('contact.force-deletes')}}" id="trashForm" method="post">
                                             @csrf
                                         </form>
-                                        <div id="deleteBtn" class="d-flex gap-5 align-items-center text-danger">
+                                        <div id="trashBtn" class="d-flex gap-5 align-items-center text-danger">
                                             <i class="fa fa-trash-can text-danger"></i>
                                             <div>delete</div>
                                         </div>
@@ -76,7 +76,7 @@
                                                 type="checkbox"
                                                 value="{{$contact->id}}"
                                                 name="contacts[]"
-                                                form="multipleDelete" id="selectItem{{$contact->id}}"
+                                                form="trashForm" id="selectItem{{$contact->id}}"
                                             />
                                         </div>
                                         <div

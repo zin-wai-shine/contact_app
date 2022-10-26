@@ -6,6 +6,7 @@ use App\Http\Requests\StoreContactRequest;
 use App\Http\Requests\UpdateContactRequest;
 use App\Models\Contact;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 class ContactController extends Controller
 {
@@ -64,6 +65,7 @@ class ContactController extends Controller
         if($request->note){
             $contact->note = $request->note;
         }
+        $contact->user_id = Auth::user()->id;
 
         $contact->save();
         return redirect()->route('contact.index')->with("status", "contact is created");

@@ -1,7 +1,7 @@
-<div class="w-100 p-2 position-fixed d-flex justify-content-between">
+<div class="w-100 p-2 position-fixed d-flex justify-content-between" style="z-index: 3;">
     <div class="d-flex align-items-center gap-5">
        <div class="d-flex align-items-center gap-3">
-           <div class="h6 mb-0 icons__hover">
+           <div class="h6 mb-0 icons__hover" id="menuToggle">
                <i class="fa fa-bars text-dark"></i>
            </div>
            <div class="d-flex align-items-center gap-2">
@@ -31,34 +31,23 @@
 
     </div>
 
-    <div>
-        <div class="d-flex align-items-center gap-2">
-            <div class="bg-primary rounded-circle item__photo d-flex justify-content-center align-items-center">
-                <i class="fa fa-user text-light"></i>
-            </div>
+    <div class="d-flex align-items-center">
+        <div class="d-flex align-items-center justify-content-center">
 
-            <ul>
-                @guest
-                    @if (Route::has('login'))
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                <div class="dropdown d-flex align-items-center">
+                    <a class="dropdown-toggle text-decoration-none text-dark fw-bold" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        {{\Illuminate\Support\Facades\Auth::user()->name}}
+                    </a>
+
+                    <ul class="dropdown-menu px-1">
+                        <li>
+                            <a class="dropdown-item drop__hover rounded-2" href="#">Profile</a>
                         </li>
-                    @endif
-
-                    @if (Route::has('register'))
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                        <li>
+                            <a class="dropdown-item drop__hover rounded-2" href="#">Setting</a>
                         </li>
-                    @endif
-                    @include('layouts.nav')
-                @else
-                    <li class="nav-item dropdown">
-                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                            {{ Auth::user()->name }}
-                        </a>
-
-                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="{{ route('logout') }}"
+                        <li>
+                            <a class="dropdown-item drop__hover rounded-2" href="{{ route('logout') }}"
                                onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                 {{ __('Logout') }}
@@ -67,10 +56,10 @@
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                 @csrf
                             </form>
-                        </div>
-                    </li>
-                @endguest
-            </ul>
+                        </li>
+                    </ul>
+                </div>
+
         </div>
     </div>
 </div>

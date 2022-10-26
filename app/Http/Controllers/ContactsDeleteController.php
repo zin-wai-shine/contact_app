@@ -11,4 +11,6 @@ class ContactsDeleteController extends Controller
         Contact::destroy($request->contacts);
         return redirect()->route('contact.index')->with('status','contact are deleted');
     }
+
+
 }

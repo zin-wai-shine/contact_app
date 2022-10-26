@@ -26,12 +26,19 @@
 
                                     <ul class="dropdown-menu py-2 px-1">
                                         <li class="drop__hover rounded-2 px-2 py-1" style="cursor:pointer">
-                                            <form action="{{route('multipleDelete')}}" id="multipleDelete" method="post">
+                                            <form action="{{route('contact.multipleCopy')}}" id="multipleForm" method="post">
                                                 @csrf
                                             </form>
                                             <div id="deleteBtn" class="d-flex gap-5 align-items-center text-secondary">
                                                 <i class="fa fa-trash-can text-secondary"></i>
                                                 <div>delete</div>
+                                            </div>
+                                        </li>
+
+                                        <li class="drop__hover rounded-2 px-2 py-1" style="cursor:pointer">
+                                            <div id="copyBtn" class="d-flex gap-5 align-items-center text-secondary">
+                                                <i class="fa fa-copy text-secondary"></i>
+                                                <div>copy</div>
                                             </div>
                                         </li>
 
@@ -64,7 +71,7 @@
                                                 type="checkbox"
                                                 value="{{$contact->id}}"
                                                 name="contacts[]"
-                                                form="multipleDelete" id="selectItem{{$contact->id}}"
+                                                form="multipleForm" id="selectItem{{$contact->id}}"
                                             />
                                         </div>
                                         <div
@@ -149,6 +156,13 @@
                                                 <i class="fa fa-trash-can"></i>
                                                 <div>delete</div>
                                             </div>
+                                        </li>
+
+                                        <li class="drop__hover rounded-2 px-2 py-1">
+                                            <a href="{{route('contact.copy', $contact->id)}}" class="text-decoration-none d-flex gap-5 align-items-center text-secondary">
+                                                <i class="fa fa-copy"></i>
+                                                <div>copy</div>
+                                            </a>
                                         </li>
 
                                     </ul>
