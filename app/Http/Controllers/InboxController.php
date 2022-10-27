@@ -39,7 +39,8 @@ class InboxController extends Controller
      */
     public function store(StoreSendRequest $request)
     {
-        /*$contact = Contact::find($request->id);*/
+/*        $contact = Contact::find($request->id);
+        return json_encode($contact);*/
         $send = new Send();
         $send->from = Auth::user()->email;
         $send->to = $request->to;
