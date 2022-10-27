@@ -27,10 +27,10 @@
                                 <ul class="dropdown-menu py-2 px-1">
 
                                     <li class="drop__hover rounded-2 px-2 py-1" style="cursor:pointer">
-                                        <form action="{{route('contact.restores')}}" id="multipleForm" method="post">
+                                        <form action="{{route('contact.restores')}}" id="trashForm" method="post">
                                             @csrf
                                         </form>
-                                        <div id="trashBtn" class="d-flex gap-5 align-items-center text-success">
+                                        <div id="restoreBtn" class="d-flex gap-5 align-items-center text-success">
                                             <i class="fa fa-trash-restore text-success"></i>
                                             <div>recovers</div>
                                         </div>
@@ -44,9 +44,6 @@
                                     </li>
 
                                     <li class="drop__hover rounded-2 px-2 py-1" style="cursor:pointer">
-                                        <form action="{{route('contact.force-deletes')}}" id="trashForm" method="post">
-                                            @csrf
-                                        </form>
                                         <div id="trashBtn" class="d-flex gap-5 align-items-center text-danger">
                                             <i class="fa fa-trash-can text-danger"></i>
                                             <div>delete</div>
@@ -166,3 +163,19 @@
         </div>
     </div>
 @endsection
+
+@push('script')
+    <script>
+        let trashBtn = document.getElementById('trashBtn');
+        let restoreBtn = document.getElementById('restoreBtn');
+        let trashForm = document.getElementById('trashForm');
+        trashBtn.addEventListener('click', () => {
+            trashForm.setAttribute('action','http://127.0.0.1:8000/contacts/forceDeletes');
+            trashForm.submit();
+        });
+        restoreBtn.addEventListener('click', () => {
+           trashForm.setAttribute('action', 'http://127.0.0.1:8000/contacts/trash/restores');
+           trashForm.submit();
+        });
+    </script>
+    @endpush

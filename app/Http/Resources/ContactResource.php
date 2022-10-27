@@ -3,6 +3,7 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\Facades\Storage;
 
 class ContactResource extends JsonResource
 {
@@ -24,8 +25,10 @@ class ContactResource extends JsonResource
             'jop_title' => $this->job_title,
             'birthday' => $this->birthday,
             'note' => $this->note,
-            'date' => $this->created_at->format("d M Y"),
-            'owner' => new ContactResource($this->user),
+            'time' => $this->created_at->format("h:i A"),
+            'date' => $this->created_at->format("d/M/Y"),
+            'contact_img' => Storage::url($this->featured_img),
+            'owner' => new UserResource($this->user),
         ];
     }
 }

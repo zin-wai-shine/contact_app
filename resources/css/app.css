@@ -126,7 +126,7 @@
 
 .hover__table{
     cursor:pointer;
-    z-index: -1;
+    z-index:1;
 }
 .hover__table .toggle__hover{
     visibility: hidden !important;
@@ -186,4 +186,5 @@
 .drop__hover:hover{
     background-color: #cbd5e0;
 }
+
 

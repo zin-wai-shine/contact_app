@@ -29,6 +29,8 @@ let csvName = document.getElementById('csvName');
 let menuToggle = document.getElementById('menuToggle');
 let sidebar = document.getElementById('sidebar');
 
+let multipleSendBtn = document.getElementById('multipleSendBtn');
+
 menuToggle.addEventListener('click', () => {
     sidebar.classList.toggle('d-none');
 });
@@ -275,7 +277,7 @@ deleteItem.forEach(e => {
 
 // Confirmation Delete....
 
-let showAlert = (btn) => {
+let showAlert = (btn, text) => {
     const swalWithBootstrapButtons = Swal.mixin({
         customClass: {
             confirmButton: 'btn btn-danger',
@@ -286,7 +288,7 @@ let showAlert = (btn) => {
 
     swalWithBootstrapButtons.fire({
         title: 'Are you sure?',
-        text: "You want to delete these files ?",
+        text: text,
         icon: 'warning',
         showCancelButton: true,
         confirmButtonText: btn,
@@ -303,18 +305,18 @@ let showAlert = (btn) => {
 };
 deleteBtn.addEventListener('click', () => {
     multipleForm.setAttribute('action', 'http://127.0.0.1:8000/contact/multipleDelete') ;
-    showAlert("Delete");
+    showAlert("Delete", "you want to delete these contacts ?");
 })
 copyBtn.addEventListener('click', () => {
   multipleForm.setAttribute('action', "http://127.0.0.1:8000/contact/multipleCopy")
-    showAlert("Copy");
+    showAlert("Copy", "you want to copy these contacts ?");
 });
 
-let trashBtn = document.getElementById('trashBtn');
-let trashForm = document.getElementById('trashForm');
-trashBtn.addEventListener('click', () => {
-    alert('hello');
-    trashForm.submit();
+multipleSendBtn.addEventListener('click', () => {
+    multipleForm.setAttribute('action', "http://127.0.0.1:8000/contact/multipleSend");
+    showAlert("Send", "you want to send these contacts ?");
 })
+
+
 
 

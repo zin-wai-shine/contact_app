@@ -8,13 +8,14 @@ use App\Imports\ContactImport;
 use App\Models\Contact;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Facades\Excel;
 
 class MoreStatusApiController extends Controller
 {
     public function multipleDelete(Request $request){
-        $contacts = Contact::destroy($request->contacts);
-        return response()->json(['message'=>'contact are deleted', 'status' => 204, 'contact' => $contacts],204);
+        Contact::destroy($request->contacts);
+        return response()->json(['message'=>'contact are deleted', 'status' => 204],204);
     }
 
     public function multipleCopy(Request $request){
@@ -30,9 +31,10 @@ class MoreStatusApiController extends Controller
             $newContact->phone = $getContact->phone;
             $newContact->birthday = $getContact->birthday;
             $newContact->note = $getContact->note;
+            $newContact->user_id = Auth::id();
             $newContact->save();
         }
-        return response()->json(['message'=>'contacts are copied', 'status' => 200, 'contact' => $newContact],200);
+        return response()->json(['message'=>'contacts are copied', 'status' => 200],200);
     }
 
     public function copy($id){

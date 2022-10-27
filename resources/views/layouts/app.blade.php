@@ -54,5 +54,7 @@
     </div>
 @endguest
 
+@stack('script')
+
 </body>
 </html>
