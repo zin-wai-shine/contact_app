@@ -13,11 +13,10 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+Route::post("login",[\App\Http\Controllers\AuthApiController::class,"login"])->name("login");
+Route::post("register",[\App\Http\Controllers\AuthApiController::class,"register"])->name("register");
 
-
-    Route::post("login",[\App\Http\Controllers\AuthApiController::class,"login"])->name("login");
-    Route::post("register",[\App\Http\Controllers\AuthApiController::class,"register"])->name("register");
-
+Route::prefix("v1")->group(function (){
     Route::middleware('auth:sanctum')->group(function(){
         Route::get('contact/trash',[\App\Http\Controllers\TrashApiController::class, 'index'])->name('contact.trash');
         Route::get('contact/inbox', [\App\Http\Controllers\InboxApiController::class, 'inbox'])->name('contact.inbox');
@@ -50,5 +49,6 @@ use Illuminate\Support\Facades\Route;
     });
 
 
+});
 
 

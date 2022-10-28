@@ -15,6 +15,6 @@ class ContactSeeder extends Seeder
      */
     public function run()
     {
-        Contact::factory(250)->create();
+        Contact::factory(70)->create();
     }
 }

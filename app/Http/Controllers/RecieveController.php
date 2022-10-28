@@ -11,11 +11,12 @@ use Illuminate\Support\Facades\Auth;
 class RecieveController extends Controller
 {
     public function recieve(Request $request){
-
+        $newInbox = Send::find($request->send_id);
         $data = Contact::find($request->contact_id);
         $contact = new Contact();
         $contact->first_name = $data->first_name;
         $contact->last_name = $data->last_name;
+
         if($data->featured_img){
             $contact->featured_img = $data->featured_img;
         }
@@ -38,7 +39,7 @@ class RecieveController extends Controller
         $contact->user_id = Auth::user()->id;
         $contact->save();
 
-        Send::find($request->send_id)->delete();
+        $newInbox->delete();
         return redirect()->route('contact.index')->with("status", "recieved");
     }
 }

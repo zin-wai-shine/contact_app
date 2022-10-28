@@ -16,7 +16,7 @@ class InboxStatusController extends Controller
             $send->to = $request->to;
             $send->contact_id = $contact;
             $send->save();
-       }
+        }
         return redirect()->back()->with('status', 'sending contacts');
     }
 

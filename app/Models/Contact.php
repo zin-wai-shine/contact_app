@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Contact extends Model
 {
     use SoftDeletes;
-    protected $fillable = ['first_name', 'last_name', 'email', 'phone', 'user_id'];
+    protected $fillable = ['first_name', 'last_name', 'email', 'phone', 'user_id', 'company', 'job_title','birthday','note'];
 
     public function scopeSearch($query){
         $query->when(request("keyword"),function($q){

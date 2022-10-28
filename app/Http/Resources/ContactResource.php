@@ -15,6 +15,10 @@ class ContactResource extends JsonResource
      */
     public function toArray($request)
     {
+        $featured_img=null;
+        if($this->featured_img){
+            $featured_img = asset(Storage::url($this->featured_img));
+        }
         return[
             'id' => $this->id,
             'first_name' => $this->first_name,
@@ -27,7 +31,7 @@ class ContactResource extends JsonResource
             'note' => $this->note,
             'time' => $this->created_at->format("h:i A"),
             'date' => $this->created_at->format("d/M/Y"),
-            'contact_img' => Storage::url($this->featured_img),
+            'featured_img' => $featured_img,
             'owner' => new UserResource($this->user),
         ];
     }

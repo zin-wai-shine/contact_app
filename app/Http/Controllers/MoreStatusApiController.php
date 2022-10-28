@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Exports\ContactExport;
 use App\Exports\SingleExport;
+use App\Http\Resources\ContactResource;
 use App\Imports\ContactImport;
 use App\Models\Contact;
 use Illuminate\Database\Eloquent\Model;
@@ -21,6 +22,9 @@ class MoreStatusApiController extends Controller
     public function multipleCopy(Request $request){
         foreach ($request->contacts as $contact){
             $getContact = Contact::find($contact);
+            if(is_null($getContact)){
+                return response()->json(["message" => "Some Contacts Are Not Found"], 404);
+            }
             $newContact = new Contact();
             $newContact->first_name = $getContact->first_name;
             $newContact->last_name = $getContact->last_name;
@@ -39,6 +43,9 @@ class MoreStatusApiController extends Controller
 
     public function copy($id){
         $contact = Contact::find($id);
+        if(is_null($contact)){
+            return response()->json(["message" => "Contact Not Found"], 404);
+        }
         $newContact = new Contact();
         $newContact->first_name = $contact->first_name;
         $newContact->last_name = $contact->last_name;
@@ -51,7 +58,7 @@ class MoreStatusApiController extends Controller
         $newContact->note = $contact->note;
         $newContact->user_id = 2;
         $newContact->save();
-        return response()->json(['message'=>'contact is copied', 'status' => 200, 'contact' => $newContact],200);
+        return response()->json(['message'=>'contact is copied', 'status' => 200, 'contact' => new ContactResource($newContact)],200);
     }
 
     public function export()
